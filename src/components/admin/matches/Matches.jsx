@@ -46,26 +46,26 @@ class Matches extends Component {
               <TableBody>
                 {this.state.matches
                   ? this.state.matches.map((match, i) => (
-                      <TableRow key={i}>
-                        <TableCell>{match.date}</TableCell>
-                        <TableCell>
-                          <Link to={`/admin_matches/edit_match/${match.id}`}>
-                            {match.away} <strong> - </strong> {match.local}
-                          </Link>
-                        </TableCell>
-                        <TableCell>
-                          {match.resultAway} <strong> - </strong>{" "}
-                          {match.resultLocal}
-                        </TableCell>
-                        <TableCell>
-                          {match.final === "Yes" ? (
-                            <span className="matches_tag_red">Result</span>
-                          ) : (
+                    <TableRow key={i}>
+                      <TableCell>{match.date}</TableCell>
+                      <TableCell>
+                        <Link to={`/admin_matches/edit_match/${match.id}`}>
+                          {match.away} <strong> - </strong> {match.local}
+                        </Link>
+                      </TableCell>
+                      <TableCell>
+                        {match.resultAway} <strong> - </strong>{" "}
+                        {match.resultLocal}
+                      </TableCell>
+                      <TableCell>
+                        {match.final === "Yes" ? (
+                          <span className="matches_tag_red">Result</span>
+                        ) : (
                             <span className="matches_tag_green">Pending</span>
                           )}
-                        </TableCell>
-                      </TableRow>
-                    ))
+                      </TableCell>
+                    </TableRow>
+                  ))
                   : null}
               </TableBody>
             </Table>
