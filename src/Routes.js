@@ -25,6 +25,7 @@ const Routes = (props) => {
           <PrivateRoutes {...props} exact component={MatchEditor} path="/admin_matches/new_match" />
           <PrivateRoutes {...props} exact component={MatchEditor} path="/admin_matches/edit_match/:id" />
           <PrivateRoutes {...props} exact component={Players} path="/admin_players" />
+          <PrivateRoutes {...props} exact component={PlayerEditor} path="/admin_players/new_player" />
           <PrivateRoutes {...props} exact component={PlayerEditor} path="/admin_players/edit_player/:id" />
           <PrivateRoutes {...props} exact component={Dashboard} path="/dashboard" />
           <PublicRoutes {...props} restricted={false} exact path="/" component={Home} />

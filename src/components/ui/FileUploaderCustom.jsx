@@ -7,8 +7,49 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 class FileUploaderCustom extends Component {
   state = {
     name: "",
-    isUploading: false
+    isUploading: false,
+    fileURL: ''
   };
+
+  handleUploadStart = () => {
+    this.setState({
+      isUploading: true
+    })
+  }
+
+  handleUploadError = () => {
+    this.setState({
+      isUploading: false
+    })
+  }
+
+  handleUploadSuccess = (fileName) => {
+    this.setState({
+      name: fileName,
+    })
+
+    firebase.storage().ref(this.props.dir).child(fileName).getDownloadURL().then(
+      url => {
+        this.setState({
+          fileURL: url,
+          isUploading: false
+        })
+      })
+    this.props.filename(fileName);
+
+  }
+
+  redoUpload = () => {
+
+    this.setState({
+      name: "",
+      isUploading: false,
+      fileURL: ''
+    })
+
+    this.props.resetImage();
+
+  }
 
   static getDerivedStateFromProps(props, state) {
     if (props.defaultImg) {
@@ -32,12 +73,21 @@ class FileUploaderCustom extends Component {
               name="image"
               randomizeFilename
               storageRef={firebase.storage().ref(this.props.dir)}
-              onUploadStart={ this.handleUploadStart}
-              onUploadError={ this.handleUploadError}
-              onUploadSuccess={ this.handleUploadSuccess}
+              onUploadStart={this.handleUploadStart}
+              onUploadError={this.handleUploadError}
+              onUploadSuccess={this.handleUploadSuccess}
             />
           </div>
         ) : null}
+        {
+          this.state.isUploading ? <div className="progress" style={{ textAlign: 'center', margin: '30px 0' }}><CircularProgress thickness={7} /></div> : null
+        }
+        {
+          this.state.fileURL ? <div className="image_upload_container">
+            <img style={{ width: '100%' }} src={this.state.fileURL} alt={this.state.name} />
+            <div className="remove" onClick={() => this.redoUpload()}>Remove</div>
+          </div> : null
+        }
       </div>
     );
   }

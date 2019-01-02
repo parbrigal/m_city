@@ -22,10 +22,10 @@ class Header extends Component {
           <div style={{ flexGrow: 1 }}>
             <div className="header_logo"><CityLogo link={true} linkTo='/' width='70px' height='70px'></CityLogo></div>
           </div>
-          <Link to="/the_team">
+          <Link to="/admin_players">
             <Button color="inherit">The Team</Button>
           </Link>
-          <Link to="/the_matches">
+          <Link to="/admin_matches">
             <Button color="inherit">Matches</Button>
           </Link>
         </Toolbar>
