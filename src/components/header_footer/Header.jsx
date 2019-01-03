@@ -22,7 +22,7 @@ class Header extends Component {
           <div style={{ flexGrow: 1 }}>
             <div className="header_logo"><CityLogo link={true} linkTo='/' width='70px' height='70px'></CityLogo></div>
           </div>
-          <Link to="/admin_players">
+          <Link to="/the_team">
             <Button color="inherit">The Team</Button>
           </Link>
           <Link to="/admin_matches">

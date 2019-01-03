@@ -128,9 +128,7 @@ class PlayerEditor extends Component {
     }
 
     if (formIsValid) {
-      console.log(this.state.type)
       if (this.state.type === "Edit player") {
-        console.log("here")
         firebaseDB.ref(`players/${this.state.playerId}`).update(dataToSubmit).then(() => {
           this.successForm("Updated")
         }).catch(err => this.setState({
